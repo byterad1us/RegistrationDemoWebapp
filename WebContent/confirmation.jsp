@@ -34,5 +34,8 @@
                     <h1>Registration Failed:  <c:out value="${sessionScope.ERROR}" /></h1>
                 </c:otherwise>
          </c:choose>
+             <br /><br />
+             <H3><a href="report.jsp">Registration Report</a></H3>
+                    
     </body>
 </html>

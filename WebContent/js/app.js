@@ -21,7 +21,7 @@ Ext.onReady(function() {
                             id: 'reg-form',
                             defaultType: 'textfield',
                             minHeight: 340,  
-                            url: 'http://localhost:8080/RegistrationDemoWebapp/register',
+                            url: 'register',
                             padding: '12 30 40 30',
                             fieldDefaults: {
                                 labelWidth: 60
@@ -146,6 +146,13 @@ Ext.onReady(function() {
                                             style: 'text-align: right;margin-left: 30px;',
                                             fieldLabel: 'zip',
                                             name: 'zip'
+                                        },
+                                         {
+                                            xtype: 'textfield',
+                                            width: 160,
+                                            style: 'text-align: right;margin-left: 30px;',
+                                            fieldLabel: 'Country',
+                                            name: 'country'
                                         }
                                     ]
                                 }],
@@ -157,6 +164,7 @@ Ext.onReady(function() {
                     form.submit({
                         success: function(form, action) {
                            Ext.Msg.alert('Success', action.result.msg);
+                           location.href="confirmation.jsp";
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failed', action.result.msg);
