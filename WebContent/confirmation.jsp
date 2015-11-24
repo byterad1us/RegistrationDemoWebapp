@@ -22,20 +22,32 @@
                 </c:otherwise>
          </c:choose>
         </title>
-        <link rel="stylesheet" type="text/css" href="css/pages.css" />
+        <link rel="stylesheet" href="http://cdn.sencha.com/ext/gpl/4.2.1/resources/css/ext-all.css">
+        <link rel="stylesheet" href="css/pages.css">
+        <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/4.2.1/ext-all-debug.js"></script>
+        <script type="text/javascript" src="js/confirmation.js"></script>
     </head>
     <body>
+    <center>
+        <div id="display-panel"></div>
         <br /><br /><br />
-         <c:choose>
+         <div id="display-panel-content" style="display:none;">
+             <br /><br />
+             <c:choose>
                 <c:when test="${sessionScope.REGISTERED}" >
-                    <h1>Welcome <c:out value="${sessionScope.USER_ID}" /> !!</h1>
+                    <br />
+                    <h1>Welcome </h1>
+                    <h3><c:out value="${sessionScope.USER_ID}" /> !</h3>
                 </c:when>    
                 <c:otherwise>
-                    <h1>Registration Failed:  <c:out value="${sessionScope.ERROR}" /></h1>
+                    <h1>Registration Failed:  /></h1>
+                    <br />   
+                    <h3><c:out value="${sessionScope.ERROR}" /></h3>
                 </c:otherwise>
-         </c:choose>
+             </c:choose>
+         </div>
              <br /><br />
              <H3><a href="report.jsp">Registration Report</a></H3>
-                    
+      </center>           
     </body>
 </html>

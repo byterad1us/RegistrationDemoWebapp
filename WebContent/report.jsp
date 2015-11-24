@@ -17,7 +17,7 @@
          <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/4.2.1/ext-all-debug.js"></script>
          <script type="text/javascript">
              <c:if test="${not empty sessionScope.USER_DATA}" >
-                var sessionUserJsobj = { firstName: "${sessionScope.USER_DATA.firstName}", lastName: "${sessionScope.USER_DATA.lastName}", address1:"${sessionScope.USER_DATA.address1}", address2:"${sessionScope.USER_DATA.address2}", city: "${sessionScope.USER_DATA.city}", state: "${sessionScope.USER_DATA.state}", zip: "${sessionScope.USER_DATA.zip}", country: "${sessionScope.USER_DATA.country}"};
+                var sessionUserJsobj = { firstName: "${sessionScope.USER_DATA.firstName}", lastName: "${sessionScope.USER_DATA.lastName}", address1:"${sessionScope.USER_DATA.address1}", address2:"${sessionScope.USER_DATA.address2}", city: "${sessionScope.USER_DATA.city}", state: "${sessionScope.USER_DATA.state}", zip: "${sessionScope.USER_DATA.zip}", country: "${sessionScope.USER_DATA.country}", regdate: '2015-11-22 00:00:00'};
             </c:if>
          </script>
          <script type="text/javascript" src="js/grid.js"></script>

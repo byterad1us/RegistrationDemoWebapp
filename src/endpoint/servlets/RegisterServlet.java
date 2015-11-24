@@ -4,11 +4,11 @@
  */
 package endpoint.servlets;
 
-import business.services.RegistrationException;
 import business.services.RegistrationService;
 import form.beans.UserData;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletException;
@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 /**
  *
@@ -38,6 +37,12 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
        UserData formBean;
        HttpSession session = request.getSession(true);
+       boolean success=false;
+       PrintWriter out = response.getWriter();
+       String msg= "registered";
+       String forward="confirmation.jsp";
+       response.setContentType("application/json;charset=UTF-8");
+       
         try {
              
              Map<String,String[]> formData = request.getParameterMap();
@@ -46,16 +51,31 @@ public class RegisterServlet extends HttpServlet {
              formBean = new UserData(tsFormData);
              RegistrationService service = new RegistrationService();
              String userIdVal = service.registerNewUser(formBean);
-     
+             success = (userIdVal != null);
              session.setAttribute("USER_ID", userIdVal);
              session.setAttribute("USER_DATA",formBean);
-             session.setAttribute("REGISTERED",Boolean.TRUE);
+             session.setAttribute("REGISTERED",success);
+             msg= "registered";
         } 
         catch(Exception x){
-          session.setAttribute("REGISTERED",Boolean.FALSE);
+          success = false;
+          msg = x.getMessage();
+          session.setAttribute("REGISTERED",success);
           session.setAttribute("ERROR",x); 
         }
-      response.sendRedirect("confirmation.jsp");  
+        
+       StringBuilder responseJsonStr = new StringBuilder();
+       responseJsonStr.append("{ \"success\": "+success+", ");
+       responseJsonStr.append(" \"msg\": \""+msg+"\", ");
+       responseJsonStr.append(" \"forward\": \""+forward+"\" ");
+       responseJsonStr.append("  }");
+       try{
+            out.println(responseJsonStr.toString());
+       }
+      finally{
+                    out.close();
+       }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

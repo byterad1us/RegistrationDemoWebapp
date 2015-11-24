@@ -4,9 +4,17 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>endpoint.servlets.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisteredUsers</servlet-name>
+        <servlet-class>endpoint.servlets.RegisteredUsers</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisteredUsers</servlet-name>
+        <url-pattern>/regusers</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
